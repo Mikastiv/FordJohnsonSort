@@ -5,6 +5,7 @@
 #include <iostream>
 #include <random>
 #include <vector>
+#include <iomanip>
 
 constexpr size_t MAX_ARRAY_SIZE = 4'096; // max number of elements in the array to sort
 constexpr size_t N_ELEM_IN_PAIR = 2;
@@ -28,7 +29,7 @@ template <typename It>
 void
 print_array(It start, It end) {
     while (start != end) {
-        std::cout << *start << ' ';
+        std::cout << std::setw(3) << *start << ' ';
         ++start;
     }
     std::cout << '\n';
@@ -151,6 +152,8 @@ binary_insert(std::vector<int>& array, const size_t start, const size_t end, con
 
 void
 merge_insertion_sort(std::vector<int>& array) {
+    if (array.size() < 2) return;
+
     // sort pairs, leaving odd number if present
     // e.g.
     // 19 elements:
@@ -403,22 +406,24 @@ merge_insertion_sort(std::vector<int>& array) {
     }
 
     // insert rest of pend if any
-    if (i < pend.size()) {
-        const size_t start = i;
-        i = pend.size() - 1;
-
-        while (i > start) {
-            binary_insert(main_chain, 0, main_chain.size() - 1, pend[i]);
-            --i;
-        }
+    const size_t start = i;
+    i = pend.size() - 1;
+    while (i > start) {
+        binary_insert(main_chain, 0, main_chain.size() - 1, pend[i]);
+        --i;
     }
 
     array = std::move(main_chain);
 }
 
 int
-main() {
-    std::vector<int> numbers = generate_random_numbers(42, 1, 99);
+main(int argc, char** argv) {
+    if (argc != 2) {
+        std::cerr << "usage: " << argv[0] << " <number of elements>" << std::endl;
+        return 1;
+    }
+
+    std::vector<int> numbers = generate_random_numbers(std::atoi(argv[1]), 1, 1000);
     std::vector<int> array_to_sort = numbers;
 
     std::cout << "before: ";
@@ -429,5 +434,5 @@ main() {
     std::cout << "after:  ";
     print_array(array_to_sort.begin(), array_to_sort.end());
 
-    std::cout << "sorted?: " << std::boolalpha << std::is_sorted(array_to_sort.begin(), array_to_sort.end());
+    std::cout << "sorted?: " << std::boolalpha << std::is_sorted(array_to_sort.begin(), array_to_sort.end()) << std::endl;
 }
