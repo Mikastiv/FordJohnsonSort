@@ -1,0 +1,40 @@
+BasedOnStyle: LLVM
+AccessModifierOffset: -4
+IndentWidth: 4
+AllowAllArgumentsOnNextLine: false
+AllowAllParametersOfDeclarationOnNextLine: false
+AlignAfterOpenBracket: BlockIndent
+AlignArrayOfStructures: Left
+AlignConsecutiveBitFields: true
+AllowShortBlocksOnASingleLine: Empty
+AllowShortCaseLabelsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: None
+AllowShortIfStatementsOnASingleLine: WithoutElse
+AllowShortLoopsOnASingleLine: true
+AlwaysBreakAfterReturnType: All
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBraces: Attach
+BreakBeforeConceptDeclarations: true
+BreakConstructorInitializers: BeforeColon
+BreakInheritanceList: BeforeColon
+ColumnLimit: 120
+Cpp11BracedListStyle: false
+EmptyLineBeforeAccessModifier: Always
+FixNamespaceComments: true
+IndentCaseLabels: true
+IntegerLiteralSeparator:
+  Binary: 4
+  Decimal: 3
+  Hex: -1
+Language: Cpp
+LineEnding: LF
+PackConstructorInitializers: Never
+PenaltyReturnTypeOnItsOwnLine: 1000
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+SeparateDefinitionBlocks: Always
+Standard: Latest
+UseTab: Never
