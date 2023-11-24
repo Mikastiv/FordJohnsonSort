@@ -296,9 +296,9 @@ merge_insertion_sort(std::vector<int>& array) {
     //
     // we now apply the same logic as before, note the binary insertion slice in each insertion
     //
-    // main chain -> [10-23-26-29-32-42]-46-57-84-91-96-97
-    //                                   |  |  |  |  |  |
-    // pend       ->                     30 13 40 48 66 10 11
+    // main chain -> [10-23-26-29-32-42-46]-57-84-91-96-97
+    //                                  |   |  |  |  |  |
+    // pend       ->                    30  13 40 48 66 10 11
     //                               ^      ^
     //                               s      i
     // pend index:         0    1    2   3  4  5  6  7  8  9
@@ -346,12 +346,12 @@ merge_insertion_sort(std::vector<int>& array) {
     //
     // keep binary inserting like before until we inserted every numbers from pend
     //
-    // main chain -> [10-13-23-26-29-30-32-42-46-57]-84-91-96-97
-    //                                               |  |  |  |
-    // pend       ->                                 40 48 66 10 11
-    //                                           ^               ^
-    //                                           s               i
-    // pend index:         0     1     2     3   4   5  6  7  8  9
+    // main chain -> [10-13-23-26-29-30-32-42-46-57-84-91-96-97]
+    //                                              |  |  |  |
+    // pend       ->                                40 48 66 10 11
+    //                                           ^              ^
+    //                                           s              i
+    // pend index:         0     1     2     3   4  5  6  7  8  9
     //
     // main chain -> 10-11-13-23-26-29-30-32-42-46-57-84-91-96-97
     //                                                |  |  |  |
@@ -359,6 +359,21 @@ merge_insertion_sort(std::vector<int>& array) {
     //                                           ^                ^
     //                                           s                i
     // pend index:         0     1     2     3   4    5  6  7  8  9
+    //
+    //
+    // main chain -> [10-11-13-23-26-29-30-32-42-46-57-84-91-96]-97
+    //                                                 |  |  |   |
+    // pend       ->                                   40 48 66  10
+    //                                            ^              ^
+    //                                            s              i
+    // pend index:         0     1     2     3    4    5  6  7   8  9
+    //
+    // main chain -> [10-10-11-13-23-26-29-30-32-42-46-57-84-91]-96-97
+    //                                                    |  |   |
+    // pend       ->                                      40 48  66
+    //                                           ^               ^
+    //                                           s               i
+    // pend index:         0     1     2     3   4    5   6  7   8  9
     //
     // ...
     //
