@@ -157,7 +157,7 @@ merge_insertion_sort(std::vector<int>& array) {
     // sort pairs, leaving odd number if present
     // e.g.
     // 19 elements:
-    //               24 10 10 97 42 32 40 84 29 26 66 96 57 13 46 30 91 48 11 <- odd
+    //               23 10 10 97 42 32 40 84 29 26 66 96 57 13 46 30 91 48 11 <- odd
     //               ----- ----- ----- ----- ----- ----- ----- ----- -----
     // becomes ->    10 23 10 97 32 42 40 84 26 29 66 96 13 57 30 46 48 91 11
     sort_inside_pairs(array);
