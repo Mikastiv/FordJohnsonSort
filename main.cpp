@@ -236,6 +236,10 @@ merge_insertion_sort(std::vector<int>& array) {
     // the value paired with the pend value we are inserting
     //
     // the slice is represented with [] here
+    // note that we can always assume that the number to insert should be inside this slice because the main chain
+    // is always ordered and the number to insert will always be smaller than it's main chain counter part; thus
+    // it is also smaller than every number to the right of it
+    //
     // main chain -> [10-23-29]-42-46-57-84-91-96-97
     //                      |   |  |  |  |  |  |  |
     // pend       ->        26  32 30 13 40 48 66 10 11
@@ -385,6 +389,8 @@ merge_insertion_sort(std::vector<int>& array) {
     //
     // and now we're done!
 
+    // the first number of pend can always be inserted as the first number in the main chain.
+    // it's always smaller than it's paired number
     main_chain.insert(main_chain.begin(), pend.front());
 
     size_t insertion_counter = 1; // how many pend elements have been inserted (for right offset during binary inserts)
@@ -395,13 +401,14 @@ merge_insertion_sort(std::vector<int>& array) {
         if (i + distance_forward >= pend.size()) break; // break if move forward is out of bounds
 
         const size_t start = i;
-        i += distance_forward;
+        i += distance_forward; // move forward
+        // iterate backwards until we reach start
         while (i > start) {
             binary_insert(main_chain, 0, i + insertion_counter - 1, pend[i]);
             ++insertion_counter;
             --i;
         }
-        i += distance_forward;
+        i += distance_forward; // move back to i's starting point for the next iteration
         ++jacobsthal_idx;
     }
 
@@ -409,6 +416,7 @@ merge_insertion_sort(std::vector<int>& array) {
     const size_t start = i;
     i = pend.size() - 1;
     while (i > start) {
+        // binary insert into the complete main chain's range (no slicing)
         binary_insert(main_chain, 0, main_chain.size() - 1, pend[i]);
         --i;
     }
